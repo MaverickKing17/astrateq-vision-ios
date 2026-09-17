@@ -6,12 +6,14 @@ workflows:
     environment:
       xcode: latest
     scripts:
-      - name: Fetch MediaPipe Dependencies
+      - name: Generate Xcode Project
         script: |
-          echo "Preparing build dependencies..."
+          brew install xcodegen
+          xcodegen generate
       - name: Build iOS Application
         script: |
           xcodebuild build \
+            -project AstrateqVision.xcodeproj \
             -scheme AstrateqVision \
             -sdk iphoneos \
             -configuration Release \
