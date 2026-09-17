@@ -17,8 +17,7 @@
 //  non-isolated reference. If you're using the `CameraManager.swift`
 //  delivered earlier in this project, change its declaration from:
 //
-//      private let session = AVCaptureSession()
-//  to:
+
 //      nonisolated(unsafe) let session = AVCaptureSession()
 //
 //  AVCaptureSession is safe to hand to a preview layer from any thread for
