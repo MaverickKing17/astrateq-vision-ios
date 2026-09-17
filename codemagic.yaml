@@ -10,12 +10,15 @@ workflows:
         script: |
           brew install xcodegen
           xcodegen generate
+      - name: Resolve Package Dependencies
+        script: |
+          xcodebuild -resolvePackageDependencies -project AstrateqVision.xcodeproj
       - name: Build iOS Application
         script: |
           xcodebuild build \
             -project AstrateqVision.xcodeproj \
             -scheme AstrateqVision \
-            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
             -configuration Release \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO \
