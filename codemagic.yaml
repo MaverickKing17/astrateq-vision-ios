@@ -1,0 +1,25 @@
+workflows:
+  ios-swiftui-build:
+    name: Astrateq Vision iOS Build
+    instance_type: mac_mini_m2
+    max_build_duration: 30
+    environment:
+      ios_signing:
+        distribution_type: ad_hoc
+      xcode: latest
+    scripts:
+      - name: Fetch MediaPipe Dependencies
+        script: |
+          echo "Preparing build dependencies..."
+      - name: Build iOS Application
+        script: |
+          xcodebuild build \
+            -scheme AstrateqVision \
+            -sdk iphoneos \
+            -configuration Release \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO
+    artifacts:
+      - build/ios/outputs/ipa/*.ipa
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/Products/**/*.app
